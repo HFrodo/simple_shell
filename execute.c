@@ -29,7 +29,7 @@ void execute(char *command)
 
 		if (execve(command, argv, NULL) == -1)
 		{
-			perror("Error");
+			perror("./hsh");
 
 			exit(-1);
 		}

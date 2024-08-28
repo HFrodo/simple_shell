@@ -19,7 +19,7 @@ int main(void)
 
 	while (1)
 	{
-		printf("$ ");
+		write(STDOUT_FILENO, "$ ", 2);
 
 		read = getline(&buffer, &size, stdin);
 
