@@ -1,39 +1,53 @@
 #include "main.h"
 
+#define BUFFER_SIZE 256
+
 /**
- * execute - Executes the command in the child process.
- * @command: The input command from the command line.
- * @command_count: The count of commands executed so far.
- *
- * Description: This function creates a child process using fork().
- * The child process then attempts to execute the command using execve().
- * If execve fails, an error message is printed and the child exits.
- * The parent process waits for the child to finish.
+ * print_error - Prints an error message for a command execution failure.
+ * @program_name: The name of the shell program.
+ * @command_count: The number of the command being executed.
+ * @command: The command that failed to execute.
+ */
+static void print_error(const char *program_name,
+		int command_count, const char *command)
+{
+	char buffer[BUFFER_SIZE];
+	int len = 0;
+
+	len += my_sprintf(buffer + len, "%s: %d: %s: %s\n",
+	program_name, command_count, command, "not found");
+	write(STDERR_FILENO, buffer, len);
+}
+
+/**
+ * execute - Forks a process to execute a command using execve.
+ * @command: The command to execute.
+ * @command_count: The number of the command being executed.
  */
 void execute(char *command, int command_count)
 {
 	pid_t id;
 	char *argv[2];
+	int status;
 
 	argv[0] = command;
 	argv[1] = NULL;
 
 	id = fork();
-
 	if (id == 0)
 	{
 		if (execve(command, argv, NULL) == -1)
 		{
-			my_printf("./hsh: %d: %s: not found\n", command_count, command);
+			print_error("./hsh", command_count, command);
 			_exit(EXIT_FAILURE);
 		}
 	}
 	else if (id > 0)
 	{
-		wait(NULL);
+		wait(&status);
 	}
 	else
 	{
-		perror("Fork failed");
+		print_error("./hsh", command_count, command);
 	}
 }

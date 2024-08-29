@@ -10,6 +10,6 @@
 #include <stdarg.h>
 
 void execute(char *command, int  command_count);
-void my_printf(const char *format, ...);
+int my_sprintf(char *buffer, const char *format, ...);
 
 #endif
