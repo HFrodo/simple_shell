@@ -35,7 +35,7 @@ void execute(char *command, int command_count)
 	id = fork();
 	if (id == 0)
 	{
-		if (execve(command, argv, NULL) == -1)
+		if (execve(command, argv, environ) == -1)
 		{
 			print_error("./hsh", command_count, command);
 			_exit(EXIT_FAILURE);
