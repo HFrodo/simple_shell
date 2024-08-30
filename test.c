@@ -1,26 +1,19 @@
 #include <stdio.h>
-#include <sys/types.h>
 #include <unistd.h>
 
 /**
- * main - Prints a sentence
- * @argc: Prints the number of arguments
- * @argv: Reads the arguments themselves
- * Description: Outputs a greeting message to the screen
+ * main - Prints ppid
+ *
+ * Description: Outputs ppid of the current process
  *
  * Return: Always 0 (success)
  */
-int main(int argc, char **argv)
+int main(void)
 {
-	(void) argc;
-	if (argc < 3)
-	{
-		printf("Hello %s %s\n", argv[1], argv[2]);
+	pid_t my_pid;
 
-		return (1);
-	}
+	my_pid = getppid();
 
-	printf("Hello %s %s\n", argv[1], argv[2]);
-
+	printf("This program's ppid is: %d\n", my_pid);
 	return (0);
 }
