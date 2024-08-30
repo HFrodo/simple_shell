@@ -1,6 +1,0 @@
-# This file is manually maintained.
-# Do not alter existing entries without permission from the underlisted Author(s).
-
-# The following list includes contributors to the project:
-
-David Bernard Egyepong <egyepong10@gmail.com>
