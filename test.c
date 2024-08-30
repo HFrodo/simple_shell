@@ -12,6 +12,7 @@
  */
 int main(int argc, char **argv)
 {
+	(void) argc;
 	if (argc < 3)
 	{
 		printf("Hello %s %s\n", argv[1], argv[2]);
