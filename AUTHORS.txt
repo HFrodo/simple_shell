@@ -1,0 +1,6 @@
+##
+The Author responsible for the development of this simple_shell program is David Bernard Egyepong
+
+##Github - HFrodo
+
+##Repo - simple_shell
